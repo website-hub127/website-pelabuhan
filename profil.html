@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UPP Kelas II Wanci - Beranda</title>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {font-family: 'Poppins', sans-serif; line-height: 1.6; background: #f8f9fc; color: #333;}
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background: #004080;
+      color: #fff;
+      z-index: 1000;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    }
+    header .logo {display: flex; align-items: center; gap: 10px;}
+    header img {height: 50px; width: 50px; border-radius: 50%; background: #fff; padding: 5px;}
+    nav {display: flex; gap: 20px;}
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+      transition: 0.3s;
+      padding: 6px 10px;
+      border-radius: 5px;
+    }
+    nav a:hover, nav a.active {
+      background: #0066cc;
+      color: #ffd700;
+    }
+    /* Hero Section */
+    .hero {
+      position: relative;
+      margin-top: 70px;
+      height: 50vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: #fff;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,50,0.6);
+      z-index: 1;
+    }
+    .hero-img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 20px;
+      max-width: 800px;
+    }
+    .hero-content h1 {font-size: 40px; margin-bottom: 15px;}
+    .hero-content p {font-size: 18px;}
+
+    /* Profil Content */
+    .profil-section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .profil-section h2 {
+      text-align: center;
+      color: #004080;
+      margin-bottom: 40px;
+      font-size: 30px;
+      position: relative;
+    }
+    .profil-section h2::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: #0066cc;
+      margin: 10px auto 0;
+    }
+    .profil-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+    .card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+    .card h3 {color: #0066cc; margin-bottom: 15px;}
+    .card p, .card ol, .card ul {font-size: 15px; text-align: justify;}
+    .card ol, .card ul {padding-left: 20px;}
+
+    /* Struktur Organisasi - Bagan */
+    .struktur {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .struktur h2 {
+      text-align: center;
+      color: #004080;
+      margin-bottom: 40px;
+      font-size: 30px;
+      position: relative;
+    }
+    .struktur h2::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: #0066cc;
+      margin: 10px auto 0;
+    }
+    .org-chart {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+    }
+    .org-level {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+    }
+    .org-box {
+      background: #fff;
+      border: 2px solid #004080;
+      border-radius: 12px;
+      padding: 15px;
+      width: 180px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .org-box h4 {
+      margin-bottom: 8px;
+      color: #004080;
+      font-size: 16px;
+    }
+    .org-box img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 8px;
+      border: 3px solid #0066cc;
+    }
+    .org-box p {
+      font-weight: bold;
+      font-size: 14px;
+      color: #333;
+    }
+
+    /* Footer */
+    footer {
+      background: #00264d;
+      color: #fff;
+      padding: 40px 20px 20px;
+      margin-top: 40px;
+    }
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .footer-container h3 {
+      margin-bottom: 15px;
+      font-size: 18px;
+      border-bottom: 2px solid #0066cc;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    .footer-container p, .footer-container a {
+      font-size: 14px;
+      color: #ddd;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .footer-container a:hover {color: #ffd700;}
+    .social a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      margin-bottom: 10px;
+      transition: 0.3s;
+    }
+    .social a:hover {color: #ffd700;}
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      font-size: 13px;
+      color: #bbb;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="logo.webp" alt="Logo Pelabuhan">
+      <h3>UPP Kelas II Wanci</h3>
+    </div>
+    <nav>
+      <a href="index.html">Beranda</a>
+      <a href="profil.html">Profil</a>
+      <a href="layanan.html">Jadwal Kapal</a>
+      <a href="pengumuman.html">Pengumuman</a>
+      <a href="kontak.html">Kontak</a>
+      <a href="pengaduan.html">Pengaduan</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <img src="profil2.jpg" alt="Pelabuhan Wanci" class="hero-img">
+    <div class="hero-content">
+      <h1>Profil UPP Kelas II Wanci</h1>
+      <p>Mengenal lebih dekat visi, misi, dan peran kami dalam mendukung transportasi laut Indonesia</p>
+    </div>
+  </section>
+
+  <!-- Profil Content -->
+  <section class="profil-section">
+    <h2>Tentang Kami</h2>
+    <div class="profil-grid">
+      <div class="card">
+        <h3>Sejarah Singkat</h3>
+        <p>Kantor UPP Kelas II Wanci berdiri untuk mendukung aktivitas kepelabuhanan di wilayah Wakatobi. Sejak awal berdiri, kami berkomitmen meningkatkan kualitas pelayanan demi mendukung kelancaran transportasi laut nasional.</p>
+      </div>
+      <div class="card">
+        <h3>Visi & Misi</h3>
+        <p><b>Visi:</b> Terselenggaranya Pelabuhan yang kondusif, efektif, efisien, dan berdaya saing tinggi dalam menunjang perekonomian nasional di era Globalisasi.</p>
+        <p><b>Misi:</b></p>
+        <ol>
+          <li>Menjamin keamanan, ketertiban, dan kelancaran arus barang serta kelestarian lingkungan pelabuhan.</li>
+          <li>Mewujudkan Standar Kinerja Operasional Pelabuhan sesuai dengan kondisi fasilitas Terminal.</li>
+          <li>Menyediakan insfraktruktur pokok dan fasilitas penunjang pelabuhan sesuai dengan kebutuhan.</li>
+          <li>Mewujudkan Tata Guna Lahan daratan dan perairan sesuai Rencana Induk Pelabuhan dan DLKr / DLKp.</li>
+
+        </ol>
+      </div>
+      <div class="card">
+        <h3>Tugas & Fungsi</h3>
+        <p><b>Tugas:</b></p>
+        <ul>
+          <li>Kantor Unit Penyelenggara Pelabuhan Kelas III Wanci adalah unit pelaksana teknis di lingkungan Kementerian Perhubungan yang berada dibawah dan bertanggung jawab kepada Menteri Perhubungan melalui Direktur Jenderal Perhubungan Laut yang mempunyai tugas melaksanakan pengaturan, pengendalian dan pengawasan kegiatan kepelabuhanan, keselamatan dan keamanan pelayaran pada pelabuhan serta penyediaan dan/atau pelayanan jasa kepelabuhanan yang belum diusahakan secara komersial.</li>
+        </ul>
+        <p><b>Fungsi:</b></p>
+        <ul>
+          <li>Penyiapan bahan penyusunan Rencana Induk Pelabuhan serta Daerah Lingkungan Kerja (DLKr) dan Daerah Lingkungan Kepentingan (DLKp) pelabuhan.
+
+</li>
+          <li>Penyediaan dan pemeliharaan penahan gelombang, kolam pelabuhan, alur pelayaran, dan sarana bantu navigasi pelayaran</li>
+          <li>Penjaminan kelancaran arus barang, penumpang dan hewan</li>
+          <li>Penyediaan dan/atau pelayanan jasa kepelabuhanan</li>
+          <li>Pengaturan, pengendalian dan pengawasan usaha jasa terkait dengan kepelabuhanan dan angkutan di perairan</li>
+          <li>Penyediaan fasilitas pelabuhan dan jasa pemanduan dan penundaan</li>
+          <li>Penjaminan keamanan dan ketertiban di pelabuhan</li>
+          <li>Pemeliharaan kelestarian lingkungan di pelabuhan</li>
+          <li>Penyiapan bahan pengawasan keselamatan dan keamanan pelayaran</li>
+          <li>Pengelolaan urusan tata usaha, kepegawaian, keuangan, hukum dan hubungan masyarakat.</li>
+
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Struktur Organisasi -->
+  <section class="struktur">
+    <h2>Struktur Organisasi</h2>
+    <div class="org-chart">
+      <div class="org-level">
+        <div class="org-box">
+          <h4>Kepala Kantor</h4>
+          <img src="kepala kantor.jpeg" alt="Kepala Kantor">
+          <p>Anwar Karim, ST., MM</p>
+        </div>
+      </div>
+      <div class="org-level">
+        <div class="org-box">
+          <h4>Petugas Tata Usaha</h4>
+          <img src="tu.jpeg" alt="Tata Usaha">
+          <p>Donny Triyanto Saputra</p>
+        </div>
+        <div class="org-box">
+          <h4>Petugas Lala & Pelayanan Jasa</h4>
+          <img src="pelayanan jasa.jpeg" alt="Lala">
+          <p>La Iki</p>
+        </div>
+        <div class="org-box">
+          <h4>Petugas Faspel</h4>
+          <img src="Faspel.jpeg" alt="Faspel">
+          <p>Askarim</p>
+        </div>
+        <div class="org-box">
+          <h4>Petugas Kesyahbandaran</h4>
+          <img src="kesyahbandaran.jpeg" alt="Kesyahbandaran">
+          <p>Rahman, SH., MM</p>
+        </div>
+      </div>
+      <div class="org-level">
+        <div class="org-box">
+          <h4>Wilker Kaledupa</h4>
+          <img src="wilker kaledupa.jpeg" alt="Kaledupa">
+          <p>Budiansyah Abdullah</p>
+        </div>
+        <div class="org-box">
+          <h4>Wilker Tomia</h4>
+          <img src="tomia.jpeg" alt="Tomia">
+          <p>Jumain</p>
+        </div>
+        <div class="org-box">
+          <h4>Wilker Binongko</h4>
+          <img src="wilker binongko.jpeg" alt="Binongko">
+          <p>Indra Tomia, SE</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div>
+        <h3>Tentang Kami</h3>
+        <p>Kantor UPP Kelas II Wanci merupakan penyelenggara kepelabuhanan yang berkomitmen memberikan pelayanan terbaik dalam mendukung transportasi laut di Indonesia.</p>
+      </div>
+      <div>
+        <h3>Navigasi</h3>
+        <a href="index.html">Beranda</a>
+        <a href="profil.html">Profil</a>
+        <a href="layanan.html">Jadwal Kapal</a>
+        <a href="pengumuman.html">Pengumuman</a>
+        <a href="kontak.html">Kontak</a>
+        <a href="pengaduan.html">Pengaduan</a>
+      </div>
+      <div>
+        <h3>Kontak</h3>
+        <p>📍 Jl. Pelabuhan No.1, Wanci, Wakatobi</p>
+        <p>📞 (0404) 123456</p>
+        <p>📧 uppwanci@dephub.go.id</p>
+      </div>
+      <div class="social">
+        <h3>Media Sosial</h3>
+        <a href="https://www.facebook.com/share/1CgpsCWEUP/" target="_blank"><i class="fab fa-facebook"></i> Kupp Wanci</a>
+        <a href="https://www.instagram.com/djpl_kuppwanci?igsh=ZTd6NGwwNDFmMXc1" target="_blank"><i class="fab fa-instagram"></i> djpl_kuppwanci</a>
+        <a href="https://youtube.com/@kuppwanci?si=jwAJFymADOfw9sqB" target="_blank"><i class="fab fa-youtube"></i> kupp wanci</a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Kantor UPP Kelas II Wanci | Sistem Informasi Kepelabuhanan</p>
+    </div>
+  </footer>
+
+</body>
+</html>

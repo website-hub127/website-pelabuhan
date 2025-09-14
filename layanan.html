@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jadwal Kapal - UPP Kelas II Wanci</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {font-family: 'Poppins', sans-serif; background: #f8f9fc; color: #333;}
+
+    /* Header */
+    header {
+      position: fixed; top: 0; left: 0; width: 100%;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 40px; background: #004080; color: #fff; z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    header .logo {display: flex; align-items: center; gap: 10px;}
+    header img {height: 45px; width: 45px; border-radius: 50%; background: #fff; padding: 5px;}
+    nav {display: flex; gap: 18px;}
+    nav a {
+      color: #fff; text-decoration: none; font-weight: 500;
+      padding: 6px 12px; border-radius: 5px; transition: 0.3s;
+    }
+    nav a:hover, nav a.active {background: #0066cc; color: #ffd700;}
+
+    /* Hero */
+    .hero {
+      margin-top: 70px; height: 35vh;
+      background: url('profil.jpg') center/cover no-repeat;
+      display: flex; justify-content: center; align-items: center;
+      position: relative;
+    }
+    .hero::after {
+      content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+    }
+    .hero-content {
+      position: relative; z-index: 1; text-align: center; color: #fff;
+    }
+    .hero-content h1 {font-size: 34px; margin-bottom: 10px;}
+    .hero-content p {font-size: 15px;}
+
+    /* Jadwal */
+    .jadwal-section {padding: 60px 20px; max-width: 1100px; margin: auto;}
+    .jadwal-section h2 {
+      text-align: center; font-size: 28px; margin-bottom: 30px; color: #004080;
+    }
+    .table-container {
+      background: #fff; padding: 20px; border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow-x: auto;
+    }
+    table {
+      width: 100%; border-collapse: collapse; min-width: 700px;
+    }
+    table th, table td {
+      border: 1px solid #ddd; padding: 12px; text-align: center; font-size: 14px;
+    }
+    table th {background: #0066cc; color: #fff;}
+    table tr:nth-child(even) {background: #f9f9f9;}
+    table tr:hover {background: #eef5ff;}
+
+    /* Info */
+    .info {
+      margin-top: 20px; padding: 15px;
+      background: #fffbe6; border: 1px solid #ffe58f;
+      border-radius: 8px; font-size: 14px; color: #8c6d1f;
+    }
+
+    /* Footer */
+    footer {background: #00264d; color: #fff; padding: 40px 20px 20px; margin-top: 50px;}
+    .footer-container {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px; max-width: 1100px; margin: auto;
+    }
+    .footer-container h3 {
+      margin-bottom: 12px; font-size: 18px; border-bottom: 2px solid #0066cc;
+      display: inline-block; padding-bottom: 4px;
+    }
+    .footer-container p, .footer-container a {
+      font-size: 14px; color: #ddd; text-decoration: none; display: block; margin-bottom: 8px;
+    }
+    .footer-container a:hover {color: #ffd700;}
+    .footer-bottom {
+      text-align: center; padding-top: 18px; font-size: 13px; color: #bbb;
+      border-top: 1px solid rgba(255,255,255,0.2); margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="logo.webp" alt="Logo">
+      <h3>UPP Kelas II Wanci</h3>
+    </div>
+    <nav>
+      <a href="index.html">Beranda</a>
+      <a href="profil.html">Profil</a>
+      <a href="layanan.html" class="active">Jadwal Kapal</a>
+      <a href="pengumuman.html">Pengumuman</a>
+      <a href="kontak.html">Kontak</a>
+      <a href="pengaduan.html">Pengaduan</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Jadwal Kapal</h1>
+      <p>Informasi keberangkatan kapal Pelabuhan Wanci</p>
+    </div>
+  </section>
+
+  <!-- Jadwal -->
+  <section class="jadwal-section">
+    <h2>Daftar Jadwal Kapal</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Nama Kapal</th>
+            <th>Rute</th>
+            <th>Hari</th>
+            <th>Jam</th>
+          </tr>
+        </thead>
+        <tbody id="tabelJadwal"></tbody>
+      </table>
+    </div>
+    <div class="info">
+      ⚠️ Untuk informasi perubahan jadwal, delay, atau pembatalan kapal, silakan cek halaman 
+      <a href="pengumuman.html" style="color:#d48806; font-weight:600;">Pengumuman</a>.
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div>
+        <h3>Tentang Kami</h3>
+        <p>Kantor UPP Kelas II Wanci merupakan penyelenggara kepelabuhanan yang berkomitmen memberikan pelayanan terbaik dalam mendukung transportasi laut di Indonesia.</p>
+      </div>
+      <div>
+        <h3>Navigasi</h3>
+        <a href="index.html">Beranda</a>
+        <a href="profil.html">Profil</a>
+        <a href="layanan.html">Jadwal Kapal</a>
+        <a href="pengumuman.html">Pengumuman</a>
+        <a href="kontak.html">Kontak</a>
+        <a href="pengaduan.html">Pengaduan</a>
+      </div>
+      <div>
+        <h3>Kontak</h3>
+        <p>📍 Jl. Pelabuhan No.1, Wanci, Wakatobi</p>
+        <p>📞 (0404) 123456</p>
+        <p>📧 uppwanci@dephub.go.id</p>
+      </div>
+      <div class="social">
+        <h3>Media Sosial</h3>
+        <a href="https://www.facebook.com/share/1CgpsCWEUP/" target="_blank"><i class="fab fa-facebook"></i> Kupp Wanci</a>
+        <a href="https://www.instagram.com/djpl_kuppwanci?igsh=ZTd6NGwwNDFmMXc1" target="_blank"><i class="fab fa-instagram"></i> djpl_kuppwanci</a>
+        <a href="https://youtube.com/@kuppwanci?si=jwAJFymADOfw9sqB" target="_blank"><i class="fab fa-youtube"></i> kupp wanci</a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Kantor UPP Kelas II Wanci | Sistem Informasi Kepelabuhanan</p>
+    </div>
+  </footer>
+  
+  <script>
+    function muatJadwal(){
+      let data = JSON.parse(localStorage.getItem("jadwal")) || [];
+      let tabel = document.getElementById("tabelJadwal");
+      tabel.innerHTML = "";
+
+      if(data.length === 0){
+        tabel.innerHTML = `<tr><td colspan="4">Belum ada data jadwal.</td></tr>`;
+      } else {
+        data.forEach(j => {
+          tabel.innerHTML += `
+            <tr>
+              <td>${j.nama}</td>
+              <td>${j.rute}</td>
+              <td>${j.hari}</td>
+              <td>${j.jam}</td>
+            </tr>`;
+        });
+      }
+    }
+    window.onload = muatJadwal;
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Admin - UPP Kelas II Wanci</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {font-family: 'Poppins', sans-serif; background: #f4f7fc; color: #333;}
+
+    header {
+      background: #004080; color: #fff; padding: 15px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    header h2 {font-size: 20px;}
+    header a {color: #fff; text-decoration: none; margin-left: 15px;}
+
+    .container {display: grid; grid-template-columns: 220px 1fr; min-height: 100vh;}
+
+    /* Sidebar */
+    .sidebar {
+      background: #00264d; color: #fff; padding: 20px; display: flex; flex-direction: column;
+    }
+    .sidebar h3 {margin-bottom: 20px;}
+    .sidebar a {
+      color: #ddd; text-decoration: none; margin: 8px 0; display: block; padding: 10px;
+      border-radius: 6px; transition: 0.3s;
+    }
+    .sidebar a:hover, .sidebar a.active {background: #004080; color: #ffd700;}
+
+    /* Content */
+    .content {padding: 30px;}
+    .card {
+      background: #fff; padding: 20px; margin-bottom: 25px;
+      border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .card h3 {margin-bottom: 15px; color: #004080;}
+    input, textarea {
+      width: 100%; padding: 10px; margin-bottom: 12px;
+      border: 1px solid #ccc; border-radius: 6px;
+    }
+    button {
+      background: #0066cc; color: #fff; border: none; padding: 10px 18px;
+      border-radius: 6px; cursor: pointer; transition: 0.3s;
+    }
+    button:hover {background: #004080;}
+
+    /* Table */
+    table {
+      width: 100%; border-collapse: collapse; margin-top: 15px;
+    }
+    table th, table td {
+      border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 14px;
+    }
+    table th {background: #0066cc; color: #fff;}
+    table tr:nth-child(even) {background: #f9f9f9;}
+    .aksi button {
+      margin-right: 5px; padding: 5px 10px; font-size: 12px;
+    }
+    .btn-edit {background: #ffc107; color: #000;}
+    .btn-hapus {background: #dc3545;}
+  </style>
+</head>
+<body>
+
+<header>
+  <h2>Dashboard Admin</h2>
+  <div>
+    <a href="index.html"><i class="fas fa-home"></i> Website</a>
+    <a href="login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </div>
+</header>
+
+<div class="container">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h3>Menu</h3>
+    <a href="#pengumuman" class="active"><i class="fas fa-bullhorn"></i> Pengumuman</a>
+    <a href="#jadwal"><i class="fas fa-ship"></i> Jadwal Kapal</a>
+    <a href="#pengaduan"><i class="fas fa-comments"></i> Pengaduan</a>
+    <a href="#pesan"><i class="fas fa-envelope"></i> Pesan Masuk</a>
+    <a href="#struktur"><i class="fas fa-users"></i> Struktur Organisasi</a>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+
+    <!-- Pengumuman -->
+    <div class="card" id="pengumuman">
+      <h3>Kelola Pengumuman</h3>
+      <input type="text" id="judulPengumuman" placeholder="Judul Pengumuman">
+      <textarea id="isiPengumuman" rows="3" placeholder="Isi Pengumuman"></textarea>
+      <button onclick="simpanPengumuman()">Simpan</button>
+      <table>
+        <thead>
+          <tr><th>Judul</th><th>Isi</th><th>Tanggal</th><th>Aksi</th></tr>
+        </thead>
+        <tbody id="tabelPengumuman"></tbody>
+      </table>
+    </div>
+
+    <!-- Jadwal -->
+    <div class="card" id="jadwal">
+      <h3>Kelola Jadwal Kapal</h3>
+      <input type="text" id="namaKapal" placeholder="Nama Kapal">
+      <input type="text" id="ruteKapal" placeholder="Rute">
+      <input type="text" id="hariKapal" placeholder="Hari">
+      <input type="text" id="jamKapal" placeholder="Jam">
+      <button onclick="simpanJadwal()">Simpan</button>
+      <table>
+        <thead>
+          <tr><th>Nama Kapal</th><th>Rute</th><th>Hari</th><th>Jam</th><th>Aksi</th></tr>
+        </thead>
+        <tbody id="tabelJadwal"></tbody>
+      </table>
+    </div>
+
+    <!-- Pengaduan -->
+    <div class="card" id="pengaduan">
+      <h3>Daftar Pengaduan</h3>
+      <table>
+        <thead>
+          <tr><th>Nama</th><th>Kontak</th><th>Isi Pengaduan</th><th>Tanggal</th><th>Aksi</th></tr>
+        </thead>
+        <tbody id="tabelPengaduan"></tbody>
+      </table>
+    </div>
+
+    <!-- Pesan Masuk -->
+    <div class="card" id="pesan">
+      <h3>Pesan Masuk</h3>
+      <table>
+        <thead>
+          <tr><th>Nama</th><th>Email</th><th>Pesan</th><th>Tanggal</th><th>Aksi</th></tr>
+        </thead>
+        <tbody id="tabelPesan"></tbody>
+      </table>
+    </div>
+
+    <!-- Struktur Organisasi -->
+    <div class="card" id="struktur">
+      <h3>Kelola Struktur Organisasi</h3>
+      <input type="text" id="jabatan" placeholder="Jabatan">
+      <input type="text" id="namaOrang" placeholder="Nama">
+      <input type="text" id="fotoUrl" placeholder="URL Foto">
+      <button onclick="simpanStruktur()">Simpan</button>
+      <table>
+        <thead>
+          <tr><th>Jabatan</th><th>Nama</th><th>Foto</th><th>Aksi</th></tr>
+        </thead>
+        <tbody id="tabelStruktur"></tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // ====== PENGUMUMAN ======
+  function simpanPengumuman(){
+    let data = JSON.parse(localStorage.getItem("pengumuman")) || [];
+    let judul = document.getElementById("judulPengumuman").value;
+    let isi = document.getElementById("isiPengumuman").value;
+    if(judul && isi){
+      data.push({judul, isi, tanggal: new Date().toLocaleString()});
+      localStorage.setItem("pengumuman", JSON.stringify(data));
+      muatPengumuman();
+      document.getElementById("judulPengumuman").value = "";
+      document.getElementById("isiPengumuman").value = "";
+    }
+  }
+  function muatPengumuman(){
+    let data = JSON.parse(localStorage.getItem("pengumuman")) || [];
+    let tabel = document.getElementById("tabelPengumuman");
+    tabel.innerHTML = "";
+    data.forEach((p, i) => {
+      tabel.innerHTML += `
+        <tr>
+          <td>${p.judul}</td>
+          <td>${p.isi}</td>
+          <td>${p.tanggal}</td>
+          <td class="aksi">
+            <button class="btn-edit" onclick="editPengumuman(${i})">Edit</button>
+            <button class="btn-hapus" onclick="hapusPengumuman(${i})">Hapus</button>
+          </td>
+        </tr>`;
+    });
+  }
+  function editPengumuman(i){
+    let data = JSON.parse(localStorage.getItem("pengumuman"));
+    document.getElementById("judulPengumuman").value = data[i].judul;
+    document.getElementById("isiPengumuman").value = data[i].isi;
+    hapusPengumuman(i);
+  }
+  function hapusPengumuman(i){
+    let data = JSON.parse(localStorage.getItem("pengumuman"));
+    data.splice(i,1);
+    localStorage.setItem("pengumuman", JSON.stringify(data));
+    muatPengumuman();
+  }
+
+  // ====== JADWAL ======
+  function simpanJadwal(){
+    let data = JSON.parse(localStorage.getItem("jadwal")) || [];
+    let nama = document.getElementById("namaKapal").value;
+    let rute = document.getElementById("ruteKapal").value;
+    let hari = document.getElementById("hariKapal").value;
+    let jam = document.getElementById("jamKapal").value;
+    if(nama && rute && hari && jam){
+      data.push({nama, rute, hari, jam});
+      localStorage.setItem("jadwal", JSON.stringify(data));
+      muatJadwal();
+      document.getElementById("namaKapal").value = "";
+      document.getElementById("ruteKapal").value = "";
+      document.getElementById("hariKapal").value = "";
+      document.getElementById("jamKapal").value = "";
+    }
+  }
+  function muatJadwal(){
+    let data = JSON.parse(localStorage.getItem("jadwal")) || [];
+    let tabel = document.getElementById("tabelJadwal");
+    tabel.innerHTML = "";
+    data.forEach((j, i) => {
+      tabel.innerHTML += `
+        <tr>
+          <td>${j.nama}</td>
+          <td>${j.rute}</td>
+          <td>${j.hari}</td>
+          <td>${j.jam}</td>
+          <td class="aksi">
+            <button class="btn-edit" onclick="editJadwal(${i})">Edit</button>
+            <button class="btn-hapus" onclick="hapusJadwal(${i})">Hapus</button>
+          </td>
+        </tr>`;
+    });
+  }
+  function editJadwal(i){
+    let data = JSON.parse(localStorage.getItem("jadwal"));
+    document.getElementById("namaKapal").value = data[i].nama;
+    document.getElementById("ruteKapal").value = data[i].rute;
+    document.getElementById("hariKapal").value = data[i].hari;
+    document.getElementById("jamKapal").value = data[i].jam;
+    hapusJadwal(i);
+  }
+  function hapusJadwal(i){
+    let data = JSON.parse(localStorage.getItem("jadwal"));
+    data.splice(i,1);
+    localStorage.setItem("jadwal", JSON.stringify(data));
+    muatJadwal();
+  }
+
+  // ====== STRUKTUR ======
+  function simpanStruktur(){
+    let data = JSON.parse(localStorage.getItem("struktur")) || [];
+    let jabatan = document.getElementById("jabatan").value;
+    let nama = document.getElementById("namaOrang").value;
+    let foto = document.getElementById("fotoUrl").value;
+    if(jabatan && nama){
+      data.push({jabatan, nama, foto});
+      localStorage.setItem("struktur", JSON.stringify(data));
+      muatStruktur();
+      document.getElementById("jabatan").value = "";
+      document.getElementById("namaOrang").value = "";
+      document.getElementById("fotoUrl").value = "";
+    }
+  }
+  function muatStruktur(){
+    let data = JSON.parse(localStorage.getItem("struktur")) || [];
+    let tabel = document.getElementById("tabelStruktur");
+    tabel.innerHTML = "";
+    data.forEach((s, i) => {
+      tabel.innerHTML += `
+        <tr>
+          <td>${s.jabatan}</td>
+          <td>${s.nama}</td>
+          <td><img src="${s.foto || 'default.jpg'}" width="40"></td>
+          <td class="aksi">
+            <button class="btn-edit" onclick="editStruktur(${i})">Edit</button>
+            <button class="btn-hapus" onclick="hapusStruktur(${i})">Hapus</button>
+          </td>
+        </tr>`;
+    });
+  }
+  function editStruktur(i){
+    let data = JSON.parse(localStorage.getItem("struktur"));
+    document.getElementById("jabatan").value = data[i].jabatan;
+    document.getElementById("namaOrang").value = data[i].nama;
+    document.getElementById("fotoUrl").value = data[i].foto;
+    hapusStruktur(i);
+  }
+  function hapusStruktur(i){
+    let data = JSON.parse(localStorage.getItem("struktur"));
+    data.splice(i,1);
+    localStorage.setItem("struktur", JSON.stringify(data));
+    muatStruktur();
+  }
+
+  // ====== PENGADUAN ======
+  function hapusPengaduan(i){
+    let data = JSON.parse(localStorage.getItem("pengaduan")) || [];
+    data.splice(i,1);
+    localStorage.setItem("pengaduan", JSON.stringify(data));
+    muatPengaduan();
+  }
+  function muatPengaduan(){
+    let data = JSON.parse(localStorage.getItem("pengaduan")) || [];
+    let tabel = document.getElementById("tabelPengaduan");
+    tabel.innerHTML = "";
+    data.forEach((p, i) => {
+      tabel.innerHTML += `
+        <tr>
+          <td>${p.nama}</td>
+          <td>${p.kontak || '-'}</td>
+          <td>${p.isi}</td>
+          <td>${p.tanggal || '-'}</td>
+          <td><button class="btn-hapus" onclick="hapusPengaduan(${i})">Hapus</button></td>
+        </tr>`;
+    });
+  }
+
+  // ====== PESAN ======
+  function hapusPesan(i){
+    let data = JSON.parse(localStorage.getItem("kontak")) || [];
+    data.splice(i,1);
+    localStorage.setItem("kontak", JSON.stringify(data));
+    muatPesan();
+  }
+  function muatPesan(){
+    let data = JSON.parse(localStorage.getItem("kontak")) || [];
+    let tabel = document.getElementById("tabelPesan");
+    tabel.innerHTML = "";
+    data.forEach((m, i) => {
+      tabel.innerHTML += `
+        <tr>
+          <td>${m.nama}</td>
+          <td>${m.email || '-'}</td>
+          <td>${m.pesan}</td>
+          <td>${m.tanggal || '-'}</td>
+          <td><button class="btn-hapus" onclick="hapusPesan(${i})">Hapus</button></td>
+        </tr>`;
+    });
+  }
+
+  // ====== LOAD DATA ======
+  window.onload = function(){
+    muatPengumuman();
+    muatJadwal();
+    muatStruktur();
+    muatPengaduan();
+    muatPesan();
+  }
+</script>
+
+</body>
+</html>

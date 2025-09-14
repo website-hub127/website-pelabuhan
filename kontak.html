@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UPP Kelas II Wanci - Beranda</title>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {font-family: 'Poppins', sans-serif; line-height: 1.6; background: #f8f9fc; color: #333;}
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background: #004080;
+      color: #fff;
+      z-index: 1000;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    }
+    header .logo {display: flex; align-items: center; gap: 10px;}
+    header img {height: 50px; width: 50px; border-radius: 50%; background: #fff; padding: 5px;}
+    nav {display: flex; gap: 20px;}
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+      transition: 0.3s;
+      padding: 6px 10px;
+      border-radius: 5px;
+    }
+    nav a:hover, nav a.active {
+      background: #0066cc;
+      color: #ffd700;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      margin-top: 70px;
+      height: 30vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.6);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      text-align: center;
+    }
+    .hero-content h1 {font-size: 34px; margin-bottom: 8px;}
+    .hero-content p {font-size: 15px;}
+
+    /* Kontak Section */
+    .kontak-section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+    }
+    .kontak-info h2, .kontak-form h2 {
+      color: #004080;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+    .kontak-info p {margin-bottom: 12px; font-size: 15px;}
+    .kontak-info p span {font-weight: bold; color: #0066cc;}
+
+    /* Form */
+    form {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    form label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+      color: #004080;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+    form input:focus, form textarea:focus {
+      border-color: #0066cc;
+      outline: none;
+      box-shadow: 0 0 5px rgba(0,102,204,0.4);
+    }
+    form button {
+      background: #0066cc;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    form button:hover {background: #004080;}
+
+    /* Map */
+    .map-container {
+      margin-top: 30px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .map-container iframe {width: 100%; height: 300px; border: none;}
+
+    /* Footer */
+    footer {
+      background: #00264d;
+      color: #fff;
+      padding: 40px 20px 20px;
+      margin-top: 40px;
+    }
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .footer-container h3 {
+      margin-bottom: 15px;
+      font-size: 18px;
+      border-bottom: 2px solid #0066cc;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    .footer-container p, .footer-container a {
+      font-size: 14px;
+      color: #ddd;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .footer-container a:hover {color: #ffd700;}
+    .social a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      margin-bottom: 10px;
+      transition: 0.3s;
+    }
+    .social a:hover {color: #ffd700;}
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      font-size: 13px;
+      color: #bbb;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="logo.webp" alt="Logo Pelabuhan">
+      <h3>UPP Kelas II Wanci</h3>
+    </div>
+    <nav>
+      <a href="index.html">Beranda</a>
+      <a href="profil.html">Profil</a>
+      <a href="layanan.html">Jadwal Kapal</a>
+      <a href="pengumuman.html">Pengumuman</a>
+      <a href="kontak.html" class="active">Kontak</a>
+      <a href="pengaduan.html">Pengaduan</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <img src="profil.jpg" alt="Kontak" class="hero-img">
+    <div class="hero-content">
+      <h1>Kontak Kami</h1>
+      <p>Hubungi Kantor UPP Kelas II Wanci untuk informasi lebih lanjut</p>
+    </div>
+  </section>
+
+  <!-- Kontak Section -->
+  <section class="kontak-section">
+    <div class="kontak-info">
+      <h2>Informasi Kontak</h2>
+      <p><span>Alamat:</span> Jl. Pelabuhan No.1, Wanci, Wakatobi</p>
+      <p><span>Telepon:</span> (0404) 123456</p>
+      <p><span>Email:</span> uppwanci@dephub.go.id</p>
+      <p><span>Jam Kerja:</span> Senin - Jumat, 08:00 - 16:00 WITA</p>
+
+      <!-- Google Maps Embed -->
+      <div class="map-container">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.5259512419247!2d123.53714637495305!3d-5.294261094682881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d98b8a3bbdbe3ef%3A0x89c1fbc6b8d2c56c!2sPelabuhan%20Wanci!5e0!3m2!1sid!2sid!4v1693610100000!5m2!1sid!2sid" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="kontak-form">
+      <h2>Kirim Pesan</h2>
+      <form id="formKontak">
+        <label for="nama">Nama Lengkap</label>
+        <input type="text" id="nama" name="nama" required>
+
+        <label for="email">Alamat Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="pesan">Pesan</label>
+        <textarea id="pesan" name="pesan" rows="5" required></textarea>
+
+        <button type="submit">Kirim Pesan</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div>
+        <h3>Tentang Kami</h3>
+        <p>Kantor UPP Kelas II Wanci merupakan penyelenggara kepelabuhanan yang berkomitmen memberikan pelayanan terbaik dalam mendukung transportasi laut di Indonesia.</p>
+      </div>
+      <div>
+        <h3>Navigasi</h3>
+        <a href="index.html">Beranda</a>
+        <a href="profil.html">Profil</a>
+        <a href="layanan.html">Jadwal Kapal</a>
+        <a href="pengumuman.html">Pengumuman</a>
+        <a href="kontak.html">Kontak</a>
+        <a href="pengaduan.html">Pengaduan</a>
+      </div>
+      <div>
+        <h3>Kontak</h3>
+        <p>📍 Jl. Pelabuhan No.1, Wanci, Wakatobi</p>
+        <p>📞 (0404) 123456</p>
+        <p>📧 uppwanci@dephub.go.id</p>
+      </div>
+      <div class="social">
+        <h3>Media Sosial</h3>
+        <a href="https://www.facebook.com/share/1CgpsCWEUP/" target="_blank"><i class="fab fa-facebook"></i> Kupp Wanci</a>
+        <a href="https://www.instagram.com/djpl_kuppwanci?igsh=ZTd6NGwwNDFmMXc1" target="_blank"><i class="fab fa-instagram"></i> djpl_kuppwanci</a>
+        <a href="https://youtube.com/@kuppwanci?si=jwAJFymADOfw9sqB" target="_blank"><i class="fab fa-youtube"></i> kupp wanci</a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Kantor UPP Kelas II Wanci | Sistem Informasi Kepelabuhanan</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("formKontak").addEventListener("submit", function(e){
+      e.preventDefault();
+
+      let nama = document.getElementById("nama").value;
+      let email = document.getElementById("email").value;
+      let pesan = document.getElementById("pesan").value;
+
+      let data = JSON.parse(localStorage.getItem("kontak")) || [];
+      data.push({nama, email, pesan, waktu: new Date().toLocaleString()});
+      localStorage.setItem("kontak", JSON.stringify(data));
+
+      alert("Pesan berhasil dikirim! Terima kasih telah menghubungi kami.");
+      this.reset();
+    });
+  </script>
+</body>
+</html>

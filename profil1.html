@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil - UPP Kelas II Wanci</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {font-family: 'Segoe UI', Tahoma, sans-serif; line-height: 1.7; background: #f8f9fc; color: #333;}
+
+    /* Header */
+    header {
+      position: fixed; top: 0; left: 0; width: 100%;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 40px; background: #004080; color: #fff; z-index: 1000;
+    }
+    header .logo {display: flex; align-items: center; gap: 10px;}
+    header img {height: 50px; width: 50px; border-radius: 50%; background: #fff; padding: 5px;}
+    nav {display: flex; gap: 20px;}
+    nav a {
+      color: #fff; text-decoration: none; font-weight: 500; transition: 0.3s;
+      padding: 6px 10px; border-radius: 5px;
+    }
+    nav a:hover, nav a.active {background: #0066cc; color: #ffd700;}
+
+    /* Hero */
+    .hero {
+      margin-top: 70px; height: 45vh; display: flex; justify-content: center; align-items: center;
+      position: relative; overflow: hidden; color: #fff; text-align: center;
+    }
+    .hero::before {
+      content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,50,0.5); z-index: 1;
+    }
+    .hero-img {position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;}
+    .hero-content {position: relative; z-index: 2; max-width: 700px; padding: 20px;}
+    .hero-content h1 {font-size: 36px; margin-bottom: 10px;}
+
+    /* Profil Content */
+    .profil-section {padding: 60px 20px; max-width: 1100px; margin: auto;}
+    .profil-section h2 {
+      text-align: center; color: #004080; margin-bottom: 40px; font-size: 28px;
+    }
+    .profil-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;
+    }
+    .card {
+      background: #fff; padding: 25px; border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s;
+    }
+    .card:hover {transform: translateY(-5px);}
+    .card h3 {color: #0066cc; margin-bottom: 15px;}
+    .card p, .card ol, .card ul {font-size: 15px; text-align: justify;}
+    .card ol, .card ul {padding-left: 20px;}
+
+    /* Struktur Organisasi */
+    .struktur {padding: 60px 20px; max-width: 1100px; margin: auto;}
+    .struktur h2 {
+      text-align: center; color: #004080; margin-bottom: 40px; font-size: 28px;
+    }
+    .struktur-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px; justify-items: center;
+    }
+    .struktur-card {
+      background: #fff; border-radius: 12px; padding: 20px; text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 100%; max-width: 250px; transition: 0.3s;
+    }
+    .struktur-card:hover {transform: translateY(-5px);}
+    .struktur-card h4 {color: #004080; margin-bottom: 10px; font-size: 16px;}
+    .struktur-card img {
+      width: 120px; height: 120px; border-radius: 50%; object-fit: cover;
+      margin-bottom: 10px; border: 3px solid #0066cc;
+    }
+    .struktur-card p {font-weight: bold; color: #333;}
+
+    /* Footer */
+    footer {background: #00264d; color: #fff; padding: 40px 20px 20px; margin-top: 40px;}
+    .footer-container {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px; max-width: 1100px; margin: auto;
+    }
+    .footer-container h3 {margin-bottom: 15px; font-size: 18px; border-bottom: 2px solid #0066cc;}
+    .footer-container p, .footer-container a {
+      font-size: 14px; color: #ddd; text-decoration: none; margin-bottom: 8px; display: block;
+    }
+    .footer-container a:hover {color: #ffd700;}
+    .footer-bottom {text-align: center; padding-top: 20px; font-size: 13px; color: #bbb;}
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="logo">
+    <img src="logo.webp" alt="Logo Pelabuhan">
+    <h3>UPP Kelas II Wanci</h3>
+  </div>
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="profil.html" class="active">Profil</a>
+    <a href="layanan.html">Jadwal Kapal</a>
+    <a href="pengumuman.html">Pengumuman</a>
+    <a href="kontak.html">Kontak</a>
+    <a href="pengaduan.html">Pengaduan</a>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <img src="profil2.jpg" alt="Pelabuhan Wanci" class="hero-img">
+  <div class="hero-content">
+    <h1>Profil UPP Kelas II Wanci</h1>
+    <p>Mengenal lebih dekat visi, misi, dan peran kami dalam mendukung transportasi laut Indonesia</p>
+  </div>
+</section>
+
+<!-- Profil Content -->
+<section class="profil-section">
+  <h2>Tentang Kami</h2>
+  <div class="profil-grid">
+    <div class="card">
+      <h3>Sejarah Singkat</h3>
+      <p>Kantor UPP Kelas II Wanci berdiri untuk mendukung aktivitas kepelabuhanan di wilayah Wakatobi...</p>
+    </div>
+    <div class="card">
+      <h3>Visi & Misi</h3>
+      <p><b>Visi:</b> Menjadi penyelenggara kepelabuhanan yang handal, profesional, dan berintegritas.</p>
+      <p><b>Misi:</b></p>
+      <ol>
+        <li>Memberikan pelayanan cepat, transparan, dan akuntabel.</li>
+        <li>Mendukung pengembangan transportasi laut berkelanjutan.</li>
+        <li>Menjaga keselamatan dan keamanan pelayaran.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h3>Tugas & Fungsi</h3>
+      <p><b>Tugas:</b></p>
+      <ul><li>Menyelenggarakan pelayanan kepelabuhanan di wilayah kerja Pelabuhan Wanci.</li></ul>
+      <p><b>Fungsi:</b></p>
+      <ul>
+        <li>Perizinan sandar kapal dan bongkar muat barang.</li>
+        <li>Menjamin kelancaran serta keamanan lalu lintas kapal di pelabuhan.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Struktur Organisasi -->
+<section class="struktur">
+  <h2>Struktur Organisasi</h2>
+  <div class="struktur-grid" id="strukturGrid">
+    <!-- Data struktur dari localStorage akan tampil di sini -->
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div>
+      <h3>Tentang Kami</h3>
+      <p>Kantor UPP Kelas II Wanci merupakan penyelenggara kepelabuhanan yang berkomitmen...</p>
+    </div>
+    <div>
+      <h3>Navigasi</h3>
+      <a href="index.html">Beranda</a>
+      <a href="profil.html">Profil</a>
+      <a href="layanan.html">Jadwal Kapal</a>
+      <a href="pengumuman.html">Pengumuman</a>
+      <a href="kontak.html">Kontak</a>
+      <a href="pengaduan.html">Pengaduan</a>
+    </div>
+    <div>
+      <h3>Kontak</h3>
+      <p>📍 Jl. Pelabuhan No.1, Wanci, Wakatobi</p>
+      <p>📞 (0404) 123456</p>
+      <p>📧 uppwanci@dephub.go.id</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Kantor UPP Kelas II Wanci | Sistem Informasi Kepelabuhanan</p>
+  </div>
+</footer>
+
+<script>
+  // Load Struktur dari localStorage
+  window.onload = function(){
+    let struktur = JSON.parse(localStorage.getItem("struktur")) || [];
+    let grid = document.getElementById("strukturGrid");
+
+    if(struktur.length === 0){
+      grid.innerHTML = "<p>Belum ada data struktur organisasi.</p>";
+    } else {
+      struktur.forEach(s => {
+        let card = `
+          <div class="struktur-card">
+            <h4>${s.jabatan}</h4>
+            <img src="${s.foto || 'default.jpg'}" alt="${s.nama}">
+            <p>${s.nama}</p>
+          </div>
+        `;
+        grid.innerHTML += card;
+      });
+    }
+  }
+</script>
+
+</body>
+</html>
